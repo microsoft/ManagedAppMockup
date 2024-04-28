@@ -1,0 +1,23 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/0.1.2-preview/CreateUIDefinition.MultiVm.json#",
+  "handler": "Microsoft.Azure.CreateUIDef",
+  "version": "0.1.2-preview",
+  "parameters": {
+    "basics": [
+      {
+        "name": "func",
+        "type": "Microsoft.Common.TextBox",
+        "label": "Azure Function Endpoint (URL)",
+        "defaultValue": "https://Mockup2funcr11nd0m.azurewebsites.net/api/",
+        "toolTip": "Azure Function Endpoint (URL)",
+        "visible": true
+      }
+    ],
+    "steps": [
+      {}
+    ],
+    "outputs": {
+      "func": "[basics('func')]"
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+      "func": {
+        "type": "string"
+      }
+    },
+    "resources": [
+      {
+        "type": "Microsoft.CustomProviders/resourceProviders",
+        "apiVersion": "2018-09-01-preview",
+        "name": "public",
+        "id": "[concat(resourceGroup().id, '/providers/Microsoft.CustomProviders/resourceProviders/public')]",
+        "location": "[resourceGroup().location]",
+        "properties": {
+          "actions": [
+            {
+              "name": "ping",
+              "routingType": "Proxy",
+              "endpoint": "[concat(parameters('func'), 'ping')]"
+            }
+          ],
+          "resourceTypes": [
+            {
+              "name": "table",
+              "routingType": "Proxy",
+              "endpoint": "[concat(parameters('func'), 'table')]"
+            }
+          ]
+        }
+      }
+    ],
+    "outputs": {
+    }
+}

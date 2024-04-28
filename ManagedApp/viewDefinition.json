@@ -1,0 +1,54 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/viewdefinition/0.0.1-preview/ViewDefinition.json#",
+    "contentVersion": "0.0.0.1",
+    "views": [
+        {
+            "kind": "Overview",
+            "properties": {
+                "header": "Managed App Mockup",
+                "description": "Managed App Mockup -- This is a mockup of a managed app used to demonstrate the capabilities of the Azure Managed Applications service. This mockup is not a real application and does not perform any real actions. It is intended to be used for demonstration purposes only.",
+                "commands": [
+                    {
+                        "displayName": "Ping Action",
+                        "path": "ping"
+                    }
+                ]
+            }
+        },    
+        {
+            "kind": "CustomResources",
+            "properties": {
+                "displayName": "EdgeTune Platform",
+                "version": "1.0.0",
+                "resourceType": "table",
+                "commands": [
+                    {
+                        "displayName": "Firmware Update",
+                        "path": "bogus",
+                        "icon": "Start"
+                    },
+                    {
+                        "displayName": "Optimal Cooling",
+                        "path": "bogus",
+                        "icon": "Start"
+                    },
+                    {
+                        "displayName": "Intelligent Power Optimization",
+                        "path": "bogus",
+                        "icon": "Polychromatic.Preview"
+                    }
+                ],
+                "columns": [
+                    {"key": "properties.key1", "displayName": "Server"},
+                    {"key": "properties.key2", "displayName": "Information"},
+                    {"key": "properties.key3", "displayName": "Firmware", "optional": true},
+                    {"key": "properties.key4", "displayName": "Remote Control", "optional": true},
+                    {"key": "properties.key5", "displayName": "Power"},
+                    {"key": "properties.key6", "displayName": "Thermal"},
+                    {"key": "properties.key7", "displayName": "Security", "optional": true},
+                    {"key": "properties.key8", "displayName": "Management", "optional": true}
+                ]
+            }
+        }
+    ]
+}
