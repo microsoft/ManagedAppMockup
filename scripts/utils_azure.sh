@@ -100,7 +100,7 @@ create_func() {
         --disable-app-insights true \
         --os-type Linux \
         --runtime python \
-        --runtime-version 3.8 \
+        --runtime-version 3.11 \
         --functions-version 4 &> $OUTPUT_DEST || exit_on_error "Failed to create function app"
     echo "Function App Created"
 
