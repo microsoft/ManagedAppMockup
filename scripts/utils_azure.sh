@@ -48,17 +48,6 @@ delete_resource_group() {
     fi
 }
 
-# Function to check if a storage account exists
-check_storage_account_exists() {
-    local rg_name=$1
-    local storage_account_name=$2
-    if [ "$(az storage account check-name --name "$storage_account_name" --query nameAvailable)" = false ]; then
-        echo "Storage Account $storage_account_name already exists."
-        echo "To fix, choose a unique managed app name ('name') in config.json."
-        exit 1
-    fi
-}
-
 # Function to create a storage account
 create_storage() {
     local rg_name=$1
