@@ -50,9 +50,11 @@ delete_resource_group() {
 
 # Function to create a storage account
 create_storage() {
-    local rg_name=$1
-    local storage_account_name=$2
-    local location=$3
+    local subscription_id=$1
+    local upn=$2
+    local rg_name=$3
+    local storage_account_name=$4
+    local location=$5
 
     # Create Azure Storage Account
     echo "Creating Storage for Managed App"
@@ -64,17 +66,17 @@ create_storage() {
         --kind StorageV2 \
         --allow-blob-public-access true &> $OUTPUT_DEST || exit_on_error "Failed to create storage account"
 
-    # Get the storage account key
-    local stor_key=$(az storage account keys list \
-        --account-name "$storage_account_name" \
-        --resource-group "$rg_name" \
-        --query "[0].value" -o tsv)
+    # Assign Storage Blob Data Contributor role to the storage account
+    az role assignment create \
+        --role "Storage Blob Data Contributor" \
+        --assignee "$upn" \
+        --scope "/subscriptions/$subscription_id/resourceGroups/$rg_name/providers/Microsoft.Storage/storageAccounts/$storage_account_name" &> $OUTPUT_DEST || exit_on_error "Failed to assign role to storage account"
 
     # Create Azure Storage Container
     echo "Creating Storage Container"
     az storage container create \
         --account-name "$storage_account_name" \
-        --account-key "$stor_key" \
+        --auth-mode login \
         --name managedappcontainer \
         --fail-on-exist \
         --public-access blob &> $OUTPUT_DEST || exit_on_error "Failed to create storage container"

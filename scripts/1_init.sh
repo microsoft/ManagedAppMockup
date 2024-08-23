@@ -30,4 +30,5 @@ if [ "$(az storage account check-name --name "$STORAGE_ACCOUNT" --query nameAvai
     exit 1
 fi
 
-create_storage "$RESOURCE_GROUP" "$STORAGE_ACCOUNT" "$LOCATION"
+UPN=$(read_config ".user_principal")
+create_storage "$SUBSCRIPTION_ID" "$UPN" "$RESOURCE_GROUP" "$STORAGE_ACCOUNT" "$LOCATION"
