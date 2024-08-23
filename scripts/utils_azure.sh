@@ -118,17 +118,11 @@ upload_zip_and_create_blob_url() {
     local storage_account_name=$2
     local zip_file=$3
 
-    # Get the storage account key
-    local stor_key=$(az storage account keys list \
-        --account-name "$storage_account_name" \
-        --resource-group "$rg_name" \
-        --query "[0].value" -o tsv)
-
     # Upload the zip file
     echo "Uploading Zip file to Azure Storage Blob"
     az storage blob upload \
         --account-name "$storage_account_name" \
-        --account-key "$stor_key" \
+        --auth-mode login \
         --container-name managedappcontainer \
         --name "managed-app.zip" \
         --overwrite \
@@ -139,7 +133,7 @@ upload_zip_and_create_blob_url() {
     blob=$(
         az storage blob url \
             --account-name "$storage_account_name" \
-            --account-key "$stor_key" \
+            --auth-mode login \
             --container-name managedappcontainer \
             --name "managed-app.zip" \
             --output tsv
@@ -147,7 +141,6 @@ upload_zip_and_create_blob_url() {
 }
 
 # Function to create a managed app definition
-# Assumes $stor_key is defined (i.e., from create_storage_and_upload_zip above)
 create_managed_app_definition() {
     local rg_name=$1
     local storage_account_name=$2
