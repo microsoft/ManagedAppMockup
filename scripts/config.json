@@ -2,10 +2,10 @@
     "name": "Mockup",
     "func_path": "../AzureFunction",
     "managed_app_path": "../ManagedApp",
-    "rg": "stefan-mockup2",
+    "rg": "stefan-mockup",
     "location": "westus2",
     "subscription_id": "e594f0cc-7915-4ef7-ab8f-9de56fb28d42",
     "user_principal": "ssaroiu@microsoft.com",
-    "random_string": "r33nd0m",
+    "random_string": "r11nd0m",
     "output_verbose": "true"
 }
