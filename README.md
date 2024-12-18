@@ -82,5 +82,5 @@ This code creates the following Azure resources:
     - a storage account (unused during steady-state; needed only for code uploads)
     - an Azure function
 
-- 'rg-managedapp' -- a Azure-managed resource group automatically for the managed app
+- 'rg-managedapp' -- an Azure-managed resource group automatically for the managed app
     - a resource provider
